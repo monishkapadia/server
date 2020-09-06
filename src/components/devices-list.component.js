@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Table } from "semantic-ui-react";
+import { Table, Modal, Icon, Button } from "semantic-ui-react";
 import axios from "axios";
-import MyModal from "./my-modal.component";
 
 const Device = (props) => (
   <Table.Row>
@@ -16,16 +15,18 @@ const Device = (props) => (
     <Table.Cell>{props.device.minHum}</Table.Cell>
     <Table.Cell>{props.device.maxHum}</Table.Cell>
     <Table.Cell>
-      <Link to={"/edit/" + props.device._id}>edit</Link> |{" "}
-      <a
-        href="/"
+      <Button color="blue" inverted as={Link} to={"/edit/" + props.device._id}>
+        edit
+      </Button>{" "}
+      <Button
+        color="red"
+        inverted
         onClick={() => {
-          props.deleteDevice(props.device._id);
-          this.setState({ modalOpen: true });
+          props.confirmOpen(props.device._id);
         }}
       >
         delete
-      </a>
+      </Button>
     </Table.Cell>
   </Table.Row>
 );
@@ -35,8 +36,9 @@ export default class DevicesList extends Component {
     super(props);
 
     this.deleteDevice = this.deleteDevice.bind(this);
+    this.confirmOpen = this.confirmOpen.bind(this);
 
-    this.state = { modalOpen: false, devices: [] };
+    this.state = { confirmOpen: false, devices: [], currentDeviceId: "" };
   }
 
   componentDidMount() {
@@ -49,6 +51,17 @@ export default class DevicesList extends Component {
         console.log(error);
       });
   }
+
+  confirmOpen = (id) =>
+    this.setState({ confirmOpen: true, currentDeviceId: id });
+
+  handleClose = () =>
+    this.setState({ currentDeviceId: "", confirmOpen: false });
+
+  handleConfirm = () => {
+    this.deleteDevice(this.state.currentDeviceId);
+    this.setState({ currentDeviceId: "", confirmOpen: false });
+  };
 
   deleteDevice(id) {
     axios.delete("http://localhost:5000/devices/" + id).then((response) => {
@@ -65,7 +78,7 @@ export default class DevicesList extends Component {
       return (
         <Device
           device={currentdevice}
-          deleteDevice={this.deleteDevice}
+          confirmOpen={this.confirmOpen}
           key={currentdevice._id}
         />
       );
@@ -93,6 +106,24 @@ export default class DevicesList extends Component {
           </Table.Header>
           <Table.Body>{this.deviceList()}</Table.Body>
         </Table>
+        <Modal
+          onClose={this.handleClose}
+          open={this.state.confirmOpen}
+          size="tiny"
+        >
+          <Modal.Header>Delete the device</Modal.Header>
+          <Modal.Content>
+            <p>Are you sure you want to delete the device</p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="green" inverted onClick={this.handleClose}>
+              <Icon name="remove" /> No
+            </Button>
+            <Button color="red" inverted onClick={this.handleConfirm}>
+              <Icon name="checkmark" /> Delete
+            </Button>
+          </Modal.Actions>
+        </Modal>
       </div>
     );
   }

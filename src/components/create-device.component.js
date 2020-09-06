@@ -102,7 +102,7 @@ export default class CreateDevice extends Component {
       .post("http://localhost:5000/devices/add", device)
       .then((res) => console.log(res.data));
 
-    // window.location = "/";
+    window.location = "/";
   }
 
   render() {
