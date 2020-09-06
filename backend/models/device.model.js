@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const deviceSchema = new Schema(
   {
-    DeviceNumber: { type: Number, required: true },
+    DeviceNumber: { type: Number, required: true, unique: true },
     IPAddress: { type: String, required: true },
     dataInterval: { type: Number, required: true },
     reboot: { type: Number, required: true, minimum: 0, maximum: 1 },

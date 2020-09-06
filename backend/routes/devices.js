@@ -69,4 +69,10 @@ router.route("/update/:id").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/devicenumber/:devicenumber").get((req, res) => {
+  Device.findOne({ DeviceNumber: req.params.devicenumber })
+    .then((devices) => res.json(devices))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 module.exports = router;
