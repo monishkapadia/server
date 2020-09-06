@@ -167,7 +167,7 @@ export default class CreateDevice extends Component {
             />
           </Form.Field>
           <Form.Field inline>
-            <label>Max Temp: </label>
+            <label>Max Hum: </label>
             <Input
               defaultValue={this.state.maxHum}
               onChange={this.onChangeMaxHum}

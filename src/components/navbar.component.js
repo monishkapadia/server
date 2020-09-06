@@ -11,7 +11,7 @@ export default class Navbar extends Component {
 
     return (
       <div>
-        <Menu pointing secondary>
+        <Menu pointing secondary size="large">
           <Menu.Item
             as={Link}
             name="home"
