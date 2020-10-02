@@ -99,7 +99,7 @@ export default class CreateDevice extends Component {
     console.log(device);
 
     axios
-      .post("http://localhost:5000/devices/add", device)
+      .post("http://192.168.0.10:5000/devices/add", device)
       .then((res) => console.log(res.data));
 
     window.location = "/";

@@ -1,25 +1,24 @@
 import React from "react";
 import "semantic-ui-css/semantic.min.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Container } from "semantic-ui-react";
 
-import Navbar from "./components/navbar.component";
-import DevicesList from "./components/devices-list.component";
-import EditDevice from "./components/edit-device.component";
-import CreateDevice from "./components/create-device.component";
+import DeviceData from './components/device-data.component';
+import Chart from './components/chart.component';
+import NotFound from './components/not-found.component';
 
 function App() {
-  return (
-    <Router>
-      <Navbar />
-      <br />
-      <Container>
-        <Route path="/" exact component={DevicesList} />
-        <Route path="/edit/:id" component={EditDevice} />
-        <Route path="/create" component={CreateDevice} />
-      </Container>
-    </Router>
-  );
+    return (
+        <Router>
+            <Container>
+                <Switch>
+                    <Route exact path="/" component={DeviceData} />
+                    <Route path="/devices/:id" component={Chart} />
+                    <Route component={NotFound} />
+                </Switch>
+            </Container>
+        </Router>
+    );
 }
 
 export default App;

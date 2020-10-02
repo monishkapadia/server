@@ -32,7 +32,7 @@ export default class EditDevice extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/devices/" + this.props.match.params.id)
+      .get("http://192.168.0.10:5000/devices/" + this.props.match.params.id)
       .then((response) => {
         this.setState({
           DeviceNumber: response.data.DeviceNumber,
@@ -119,7 +119,7 @@ export default class EditDevice extends Component {
 
     axios
       .post(
-        "http://localhost:5000/devices/update/" + this.props.match.params.id,
+        "http://192.168.0.10:5000/devices/update/" + this.props.match.params.id,
         device
       )
       .then((res) => console.log(res.data));

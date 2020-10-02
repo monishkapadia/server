@@ -43,7 +43,7 @@ export default class DevicesList extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/devices/")
+      .get("http://192.168.0.10:5000/devices/")
       .then((response) => {
         this.setState({ devices: response.data });
       })
@@ -64,7 +64,7 @@ export default class DevicesList extends Component {
   };
 
   deleteDevice(id) {
-    axios.delete("http://localhost:5000/devices/" + id).then((response) => {
+    axios.delete("http://192.168.0.10:5000/devices/" + id).then((response) => {
       console.log(response.data);
     });
 
