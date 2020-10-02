@@ -28,9 +28,7 @@ io.on('connection', (socket) => {
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
-app.get('*', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
+
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
@@ -58,6 +56,10 @@ app.use(function (req, res, next) {
 
 app.use("/devices", devicesRouter);
 app.use("/data", dataRouter);
+
+app.get('/*', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
 
 server.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
