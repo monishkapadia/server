@@ -5,14 +5,18 @@ import axios from 'axios';
 
 
 export class DeviceData extends Component {
-    state = {
-        data: []
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        }
     }
+
     componentDidMount() {
         axios.get(`/data`)
             .then(res => {
                 const data = res.data;
-                this.setState({ data });
+                this.setState({ data: data });
             })
     }
 
