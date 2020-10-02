@@ -16,6 +16,7 @@ export class DeviceData extends Component {
         axios.get(`/data`)
             .then(res => {
                 const data = res.data;
+                console.log(data);
                 this.setState({ data: data });
             })
     }
