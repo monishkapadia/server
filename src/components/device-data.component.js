@@ -35,7 +35,7 @@ export class DeviceData extends Component {
                     {this.state.data.map(data => (
                         <Table.Row>
                             <Table.Cell>
-                                <Link to={`/devices/${data.UUID}`}>{data.UUID}</Link>
+                                <Link to={`/IoTDevice/${data.UUID}`}>{data.UUID}</Link>
                             </Table.Cell>
                             <Table.Cell>{data.IPAddress}</Table.Cell>
                             <Table.Cell>{data.temp}</Table.Cell>

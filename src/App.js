@@ -13,7 +13,7 @@ function App() {
             <Container>
                 <Switch>
                     <Route exact path="/" component={DeviceData} />
-                    <Route path="/device/:id" component={Chart} />
+                    <Route path="/IoTDevice/:id" component={Chart} />
                     <Route component={NotFound} />
                 </Switch>
             </Container>
