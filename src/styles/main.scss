@@ -2,10 +2,33 @@
 @import './pulse';
 
 body {
-    margin: 10px;
-    background-color: $blue-hex;
+    margin: 0;
+    background-color: white;
 }
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
+}
+
+.container__table {
+    height: 70vh;
+    overflow-y: scroll;  /* or auto */
+}
+
+.rightAlign {
+    display: flex;
+    justify-content: right;
+}
+
+.ui.selection.dropdown {
+    min-width: 8em;
+    min-height: 2.21428571em;
+}
+
+@media only screen and (min-width: 1200px){
+    .ui.container {
+        width: 90vw;
+        margin-left: auto!important;
+        margin-right: auto!important;
+    }
 }

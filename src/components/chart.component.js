@@ -3,6 +3,9 @@ import io from 'socket.io-client';
 import { Grid, Container } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
 
+// const server = 'http://192.168.0.10:5000';
+const server = '';
+
 const SOCKETIO_ERRORS = ['reconnect_error', 'connect_error', 'connect_timeout', 'connect_failed', 'error'];
 const MAX_POINTS_TO_STORE = 10;
 
@@ -53,7 +56,7 @@ class Chart extends Component {
     }
 
     connect = () => {
-        this.socket = io();
+        this.socket = io(`${server}`);
         this.socket.on(this.props.match.params.id, this.storeReading);
 
         // Various Errors handling

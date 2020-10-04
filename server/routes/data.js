@@ -7,6 +7,27 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/distinct").get((req, res) => {
+  Data.aggregate([
+    {
+      $group: {
+        _id: '$UUID',
+        "IPAddress": { "$last": "$IPAddress" },
+        "temp": { "$last": "$temp" },
+        "temp_unit": { "$last": "$temp_unit" },
+        "humidity": { "$last": "$humidity" },
+        "lat": { "$last": "$lat" },
+        "lon": { "$last": "$lon" },
+        "time": { "$last": "$time" }
+      }
+    },
+    { $sort: { "_id": -1 } }
+  ]).exec((err, data) => {
+    if (err) res.status(400).json("Error: " + err);
+    res.json(data);
+  })
+});
+
 router.route("/add").post((req, res) => {
   const DeviceNumber = req.body.DeviceNumber;
   const UUID = req.body.UUID;
@@ -39,7 +60,7 @@ router.route("/add").post((req, res) => {
 });
 
 router.route("/:uuid").get((req, res) => {
-  Data.find({ UUID: req.params.uuid })
+  Data.find({ UUID: req.params.uuid }).sort({ 'time': 'desc' })
     .then((data) => res.json(data))
     .catch((err) => res.status(400).json("Error: " + err));
 });

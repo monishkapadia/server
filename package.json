@@ -21,6 +21,7 @@
     "socket.io-client": "^2.3.1"
   },
   "scripts": {
+    "substitutescript": "react-scripts start",
     "start": "node server/server.js",
     "prebuild": "rm -r server/public",
     "build": "react-scripts build",
