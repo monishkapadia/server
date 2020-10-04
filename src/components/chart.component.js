@@ -101,8 +101,8 @@ class Chart extends Component {
     render = () => (
         <Container>
             <h2>IoT Dashboard</h2>
-            <Grid>
-                <Grid.Column width={8}>
+            <Grid stackable columns={2}>
+                <Grid.Column>
                     <div className="card">
                         <Grid padded>
                             <Grid.Column width={1}></Grid.Column>
@@ -118,7 +118,7 @@ class Chart extends Component {
                         <Line data={this.state.tempChart} legend={{ display: false }} />
                     </div>
                 </Grid.Column>
-                <Grid.Column width={8}>
+                <Grid.Column>
                     <div className="card">
                         <Grid padded>
                             <Grid.Column width={1}></Grid.Column>
