@@ -101,41 +101,39 @@ class Chart extends Component {
     render = () => (
         <Container>
             <h2>IoT Dashboard</h2>
-            <Grid columns={2}>
-                <Grid.Row>
-                    <Grid.Column>
-                        <div className="card">
-                            <Grid padded>
-                                <Grid.Column width={1}></Grid.Column>
-                                <Grid.Column width={10}><h5>Temperature (in {this.state.temp_unit})</h5></Grid.Column>
-                                <Grid.Column width={5}>
-                                    <span className={'status ' + (this.state.connected ? 'success' : 'danger')}>
-                                        {this.state.error}
-                                        <i className="pulse"></i>
-                                        {this.state.connected ? 'Connected' : 'Disconnected'}
-                                    </span>
-                                </Grid.Column>
-                            </Grid>
-                            <Line data={this.state.tempChart} legend={{ display: false }} />
-                        </div>
-                    </Grid.Column>
-                    <Grid.Column>
-                        <div className="card">
-                            <Grid padded>
-                                <Grid.Column width={1}></Grid.Column>
-                                <Grid.Column width={10}><h5>Humidity (%)</h5></Grid.Column>
-                                <Grid.Column width={5}>
-                                    <span className={'status ' + (this.state.connected ? 'success' : 'danger')}>
-                                        {this.state.error}
-                                        <i className="pulse"></i>
-                                        {this.state.connected ? 'Connected' : 'Disconnected'}
-                                    </span>
-                                </Grid.Column>
-                            </Grid>
-                            <Line data={this.state.humidityChart} />
-                        </div>
-                    </Grid.Column>
-                </Grid.Row>
+            <Grid>
+                <Grid.Column width={8}>
+                    <div className="card">
+                        <Grid padded>
+                            <Grid.Column width={1}></Grid.Column>
+                            <Grid.Column width={10}><h5>Temperature (in {this.state.temp_unit})</h5></Grid.Column>
+                            <Grid.Column width={5}>
+                                <span className={'status ' + (this.state.connected ? 'success' : 'danger')}>
+                                    {this.state.error}
+                                    <i className="pulse"></i>
+                                    {this.state.connected ? 'Connected' : 'Disconnected'}
+                                </span>
+                            </Grid.Column>
+                        </Grid>
+                        <Line data={this.state.tempChart} legend={{ display: false }} />
+                    </div>
+                </Grid.Column>
+                <Grid.Column width={8}>
+                    <div className="card">
+                        <Grid padded>
+                            <Grid.Column width={1}></Grid.Column>
+                            <Grid.Column width={10}><h5>Humidity (%)</h5></Grid.Column>
+                            <Grid.Column width={5}>
+                                <span className={'status ' + (this.state.connected ? 'success' : 'danger')}>
+                                    {this.state.error}
+                                    <i className="pulse"></i>
+                                    {this.state.connected ? 'Connected' : 'Disconnected'}
+                                </span>
+                            </Grid.Column>
+                        </Grid>
+                        <Line data={this.state.humidityChart} />
+                    </div>
+                </Grid.Column>
             </Grid>
 
         </Container>
