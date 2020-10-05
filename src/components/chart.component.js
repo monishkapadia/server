@@ -56,8 +56,7 @@ class Chart extends Component {
     }
 
     connect = () => {
-        this.socket = io();
-        // this.socket = io(`${server}`);
+        this.socket = io(`${server}`);
         this.socket.on(this.props.match.params.id, this.storeReading);
 
         // Various Errors handling

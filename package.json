@@ -24,7 +24,7 @@
   "scripts": {
     "substitutescript": "react-scripts start",
     "start": "node server/server.js",
-    "prebuild": "rm -r server/public",
+    "prebuild": "mkdir server/public",
     "build": "react-scripts build",
     "postbuild": "mv build server/public"
   },
