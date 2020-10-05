@@ -1,15 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+$sidebar-bg-color: #2A2E32;
+$submenu-bg-color: rgba(255, 255, 255, 0.05);
+$submenu-bg-color-collapsed: rgba(29, 29, 29, 0.95);
+$sidebar-color: #ececec;
+$highlight-color: #d8d8d8;
+$icon-bg-color: rgba(255, 255, 255, 0.05);
+$icon-size: 35px;
+
+@import '~react-pro-sidebar/dist/scss/styles.scss';
 @import './colors';
 @import './pulse';
+
 
 body {
     margin: 0;
     background-color: white;
 }
+body #root {
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+}
+
+.app {
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+main {
+    padding: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
 }
-
+.icon-dash {
+    color: #00C9FF;
+}
+.ui.small.image {
+    margin: 0em -1em;
+    width: 210px;
+}
 .container__table {
     height: 70vh;
     overflow-y: scroll;  /* or auto */
@@ -23,6 +59,17 @@ body {
 .ui.selection.dropdown {
     min-width: 8em;
     min-height: 2.21428571em;
+}
+
+.pro-sidebar {
+    width: 200px;
+    min-width: 200px;
+}
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-item-content {
+    font-family: 'Nunito', sans-serif;
+    text-align: left;
+    padding: 1.3em;
+    text-transform: uppercase;
 }
 
 @media only screen and (min-width: 1200px){

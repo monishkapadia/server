@@ -12,15 +12,19 @@ import NotFound from './components/not-found.component';
 function App() {
     return (
         <Router>
-            <Navbar />
-            <Container>
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/IoTDevice/:id" component={DeviceData} />
-                    <Route path="/IoTDevice/live/:id" component={Chart} />
-                    <Route component={NotFound} />
-                </Switch>
-            </Container>
+            <div className="app">
+                <Navbar />
+                <Container>
+                    <Switch>
+                        <main>
+                            <Route exact path="/" component={Home} />
+                            <Route exact path="/IoTDevice/:id" component={DeviceData} />
+                            <Route path="/IoTDevice/live/:id" component={Chart} />
+                            <Route component={NotFound} />
+                        </main>
+                    </Switch>
+                </Container>
+            </div>
         </Router>
     );
 }
