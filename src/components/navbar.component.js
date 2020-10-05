@@ -7,10 +7,14 @@ import { Link } from "react-router-dom";
 export default class Navbar extends Component {
   state = { activeItem: "home" };
 
+  handleItemClick = (e, name) => this.setState({ activeItem: name })
+
   render() {
+    const { activeItem } = this.state
+
     return (
       <div>
-        <ProSidebar>
+        <ProSidebar breakPoint="md" toggled={false}>
           <SidebarHeader>
             <div>
               <Image src={logo} size='small' />
@@ -30,26 +34,26 @@ export default class Navbar extends Component {
           </SidebarHeader>
           <SidebarContent>
 
-            <Menu iconShape="square">
-              <MenuItem >
+            <Menu>
+              <MenuItem active={activeItem === 'home'}>
                 <Icon name="home" />
                 Home
-                <Link to="/" />
+                <Link to="/" onClick={(e) => this.handleItemClick(e, "home")} />
               </MenuItem>
-              <MenuItem>
+              <MenuItem active={activeItem === 'alert'}>
                 <Icon name="bell outline" />
                 Alert
-                <Link to="/" />
+                <Link to="/" onClick={(e) => this.handleItemClick(e, "alert")} />
               </MenuItem>
-              <MenuItem>
+              <MenuItem active={activeItem === 'chart'}>
                 <Icon name="chart bar outline" />
                 Chart
-                <Link to="/" />
+                <Link to="/" onClick={(e) => this.handleItemClick(e, "chart")} />
               </MenuItem>
-              <MenuItem>
+              <MenuItem active={activeItem === 'profile'}>
                 <Icon name="user outline" />
                 Profile
-                <Link to="/" />
+                <Link to="/" onClick={(e) => this.handleItemClick(e, "profile")} />
               </MenuItem>
             </Menu>
           </SidebarContent>

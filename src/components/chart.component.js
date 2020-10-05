@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import io from 'socket.io-client';
-import { Grid, Container } from 'semantic-ui-react';
+import { Grid, Container, Icon } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
+import { Link } from "react-router-dom";
 
 // const server = 'http://192.168.0.10:5000';
 const server = '';
@@ -16,17 +17,17 @@ const getState = (labelName, label, data) => ({
             label: labelName,
             fill: true,
             lineTension: 0.1,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
+            backgroundColor: 'rgba(0,201,255,0.4)',
+            borderColor: 'rgba(0,201,255,1)',
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBorderColor: 'rgba(0,201,255,1)',
             pointBackgroundColor: '#fff',
             pointBorderWidth: 1,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBackgroundColor: 'rgba(0,201,255,1)',
             pointHoverBorderColor: 'rgba(220,220,220,1)',
             pointHoverBorderWidth: 2,
             pointRadius: 1,
@@ -100,7 +101,16 @@ class Chart extends Component {
 
     render = () => (
         <Container>
-            <h2>Sensor Dashboard</h2>
+            <Link to={"/IoTDevice/" + this.props.match.params.id}>
+                <Icon circular name="angle left" size="large" />
+            </Link>
+            <span style={{
+                fontSize: '24px',
+                fontWeight: 'bold',
+                margin: '5px 10px'
+            }}>
+                Sensor Dashboard
+            </span>
             <Grid stackable columns={2}>
                 <Grid.Column>
                     <div className="card">

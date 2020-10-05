@@ -50,6 +50,7 @@ export class Home extends Component {
 
     render = () => (
         <Container>
+            <h1>Devices</h1>
             <Card.Group>
                 {this.state.devices.map(data => (
                     <Card href={'/IoTDevice/' + data._id} key={data._id} color={(data.connected ? 'green' : 'red')}>

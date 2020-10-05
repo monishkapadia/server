@@ -111,14 +111,14 @@ export class DeviceData extends Component {
                 </Segment>
             }
 
+            <h2>Device: pi-{this.props.match.params.id}</h2>
+            <h4>IP Address: {this.state.deviceSettings.IPAddress}</h4>
             <div className='container__table'>
                 <Table celled>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell>UUID</Table.HeaderCell>
-                            <Table.HeaderCell>IP Address</Table.HeaderCell>
                             <Table.HeaderCell>Temperature</Table.HeaderCell>
-                            <Table.HeaderCell>Temperature <br></br> Unit</Table.HeaderCell>
+                            <Table.HeaderCell>Temperature Unit</Table.HeaderCell>
                             <Table.HeaderCell>Humidity</Table.HeaderCell>
                             <Table.HeaderCell>Latitude</Table.HeaderCell>
                             <Table.HeaderCell>Longitude</Table.HeaderCell>
@@ -129,8 +129,6 @@ export class DeviceData extends Component {
                     <Table.Body>
                         {this.state.data.map(data => (
                             <Table.Row key={data._id}>
-                                <Table.Cell>{data.UUID}</Table.Cell>
-                                <Table.Cell>{data.IPAddress}</Table.Cell>
                                 <Table.Cell>{data.temp}</Table.Cell>
                                 <Table.Cell>{data.temp_unit}</Table.Cell>
                                 <Table.Cell>{data.humidity}</Table.Cell>
@@ -143,12 +141,13 @@ export class DeviceData extends Component {
                 </Table>
             </div>
             <Grid.Column>
+                <Button floated='right' positive as={Link} to={`/IoTDevice/live/${this.props.match.params.id}`}>Live Chart</Button>
                 <Modal
                     onClose={() => this.setOpen(false)}
                     onOpen={() => this.setOpen(true)}
                     size='tiny'
                     open={this.state.openModal}
-                    trigger={<Button primary>Device Settings</Button>}
+                    trigger={<Button floated='right' primary>Device Settings</Button>}
                 >
                     <Modal.Header>Update Device Settings</Modal.Header>
                     <Modal.Content>
@@ -199,7 +198,7 @@ export class DeviceData extends Component {
                             content="Nope"
                             labelPosition='right'
                             icon='cancel'
-                            color='black'
+                            color='red'
                             onClick={() => this.setOpen(false)} />
                         <Button
                             content="Update"
@@ -211,7 +210,6 @@ export class DeviceData extends Component {
                     </Modal.Actions>
                 </Modal>
 
-                <Button positive as={Link} to={`/IoTDevice/live/${this.props.match.params.id}`}>Live Chart</Button>
             </Grid.Column>
         </Grid.Column>
     )
