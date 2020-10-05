@@ -11,9 +11,6 @@ const SOCKETIO_ERRORS = ['reconnect_error', 'connect_error', 'connect_timeout', 
 const MAX_POINTS_TO_STORE = 10;
 
 const setStateData = (labelName, label, data) => {
-    console.log(labelName);
-    console.log(label);
-    console.log(data);
     return ({
         labels: label,
         datasets: [
@@ -86,24 +83,24 @@ class Chart extends Component {
             const temp_unit = (rawData["temp_unit"] === 'C') ? `Celsuis` : `Farenheit`;
             const humidity = prevState.humidity;
             const time = prevState.time;
+            const pointsToStore = Math.max(time.length - MAX_POINTS_TO_STORE, 0);
             let dataTime = new Date(rawData["time"]);
-            if (time.length >= MAX_POINTS_TO_STORE) {
-                temp.shift();
-                humidity.shift();
-                time.shift();
-            }
             temp.push(rawData["temp"]);
             humidity.push(rawData["humidity"]);
             time.push(dataTime.toTimeString().split(" ")[0]);
-
+            const newTemp = temp.slice(pointsToStore);
+            const newHumidity = humidity.slice(pointsToStore);
+            const newTime = time.slice(pointsToStore);
+            console.log(newTemp);
+            console.log(newTime);
             return {
-                temp: temp,
+                temp: newTemp,
                 temp_unit: temp_unit,
-                humidity: humidity,
-                label: time,
+                humidity: newHumidity,
+                label: newTime,
                 connected: true,
-                tempChart: setStateData(`Temperature (°${rawData["temp_unit"]})`, time, temp),
-                humidityChart: setStateData(`Humidity`, time, humidity)
+                tempChart: setStateData(`Temperature (°${rawData["temp_unit"]})`, newTime, newHumidity),
+                humidityChart: setStateData(`Humidity`, newTime, newHumidity)
             }
         });
     }
