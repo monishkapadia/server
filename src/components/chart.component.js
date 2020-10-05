@@ -10,32 +10,37 @@ const server = '';
 const SOCKETIO_ERRORS = ['reconnect_error', 'connect_error', 'connect_timeout', 'connect_failed', 'error'];
 const MAX_POINTS_TO_STORE = 10;
 
-const getState = (labelName, label, data) => ({
-    labels: label,
-    datasets: [
-        {
-            label: labelName,
-            fill: true,
-            lineTension: 0.1,
-            backgroundColor: 'rgba(0,201,255,0.4)',
-            borderColor: 'rgba(0,201,255,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(0,201,255,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(0,201,255,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: data
-        }
-    ]
-});
+const setStateData = (labelName, label, data) => {
+    console.log(labelName);
+    console.log(label);
+    console.log(data);
+    return ({
+        labels: label,
+        datasets: [
+            {
+                label: labelName,
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(0,201,255,0.4)',
+                borderColor: 'rgba(0,201,255,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(0,201,255,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(0,201,255,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: data
+            }
+        ]
+    });
+}
 
 class Chart extends Component {
     constructor(props) {
@@ -93,8 +98,8 @@ class Chart extends Component {
                 humidity: humidity.slice(pointsToStore),
                 label: time.slice(pointsToStore),
                 connected: true,
-                tempChart: getState(`Temperature (°${rawData["temp_unit"]})`, time.slice(pointsToStore), temp.slice(pointsToStore)),
-                humidityChart: getState(`Humidity`, time.slice(pointsToStore), humidity.slice(pointsToStore))
+                tempChart: setStateData(`Temperature (°${rawData["temp_unit"]})`, time.slice(pointsToStore), temp.slice(pointsToStore)),
+                humidityChart: setStateData(`Humidity`, time.slice(pointsToStore), humidity.slice(pointsToStore))
             }
         });
     }
