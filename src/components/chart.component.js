@@ -86,20 +86,24 @@ class Chart extends Component {
             const temp_unit = (rawData["temp_unit"] === 'C') ? `Celsuis` : `Farenheit`;
             const humidity = prevState.humidity;
             const time = prevState.time;
-            const pointsToStore = Math.max(time.length - MAX_POINTS_TO_STORE, 0);
             let dataTime = new Date(rawData["time"]);
+            if (time.length >= MAX_POINTS_TO_STORE) {
+                temp.shift();
+                humidity.shift();
+                time.shift();
+            }
             temp.push(rawData["temp"]);
             humidity.push(rawData["humidity"]);
             time.push(dataTime.toTimeString().split(" ")[0]);
 
             return {
-                temp: temp.slice(pointsToStore),
+                temp: temp,
                 temp_unit: temp_unit,
-                humidity: humidity.slice(pointsToStore),
-                label: time.slice(pointsToStore),
+                humidity: humidity,
+                label: time,
                 connected: true,
-                tempChart: setStateData(`Temperature (°${rawData["temp_unit"]})`, time.slice(pointsToStore), temp.slice(pointsToStore)),
-                humidityChart: setStateData(`Humidity`, time.slice(pointsToStore), humidity.slice(pointsToStore))
+                tempChart: setStateData(`Temperature (°${rawData["temp_unit"]})`, time, temp),
+                humidityChart: setStateData(`Humidity`, time, humidity)
             }
         });
     }
