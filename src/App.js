@@ -15,14 +15,14 @@ function App() {
             <div className="app">
                 <Navbar />
                 <Container>
-                    <Switch>
-                        <main>
+                    <main>
+                        <Switch>
                             <Route exact path="/" component={Home} />
                             <Route exact path="/IoTDevice/:id" component={DeviceData} />
                             <Route path="/IoTDevice/live/:id" component={Chart} />
                             <Route component={NotFound} />
-                        </main>
-                    </Switch>
+                        </Switch>
+                    </main>
                 </Container>
             </div>
         </Router>
