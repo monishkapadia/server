@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Card, Container } from 'semantic-ui-react'
 import axios from 'axios';
 
-// const server = "http://192.168.0.10:5000";
+// const server = 'http://10.0.0.252:5000';
 const server = "";
 export class Home extends Component {
     constructor(props) {

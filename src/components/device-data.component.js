@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Table, Grid, Button, Modal, Form, Input, Dropdown, Icon, Segment } from 'semantic-ui-react'
 import axios from 'axios';
 
-// const server = 'http://192.168.0.10:5000'
+// const server = 'http://10.0.0.252:5000';
 const server = ''
 const rebootOptions = [
     { key: '0', text: 'No', value: '0' },

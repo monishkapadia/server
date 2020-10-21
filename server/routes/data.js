@@ -65,4 +65,13 @@ router.route("/:uuid").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/charts/:uuid").get((req, res) => {
+  var newTime = new Date();
+  newTime.setDate(newTime.getDate() - parseInt(req.query.time));
+
+  Data.find({ UUID: req.params.uuid, time: { $gte: newTime } })
+    .then((data) => res.json(data))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 module.exports = router;

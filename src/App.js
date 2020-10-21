@@ -6,7 +6,8 @@ import { Container } from "semantic-ui-react";
 import Navbar from './components/navbar.component';
 import Home from './components/home.component'
 import DeviceData from './components/device-data.component';
-import Chart from './components/chart.component';
+import LiveChart from './components/livechart.component';
+import Charts from './components/charts.component';
 import NotFound from './components/not-found.component';
 
 function App() {
@@ -18,8 +19,9 @@ function App() {
                     <main>
                         <Switch>
                             <Route exact path="/" component={Home} />
+                            <Route exact path="/charts" component={Charts} />
                             <Route exact path="/IoTDevice/:id" component={DeviceData} />
-                            <Route path="/IoTDevice/live/:id" component={Chart} />
+                            <Route path="/IoTDevice/live/:id" component={LiveChart} />
                             <Route component={NotFound} />
                         </Switch>
                     </main>

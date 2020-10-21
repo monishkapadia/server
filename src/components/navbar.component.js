@@ -45,10 +45,10 @@ export default class Navbar extends Component {
                 Alert
                 <Link to="/" onClick={(e) => this.handleItemClick(e, "alert")} />
               </MenuItem>
-              <MenuItem active={activeItem === 'chart'}>
+              <MenuItem active={activeItem === 'charts'}>
                 <Icon name="chart bar outline" />
                 Chart
-                <Link to="/" onClick={(e) => this.handleItemClick(e, "chart")} />
+                <Link to="/charts" onClick={(e) => this.handleItemClick(e, "charts")} />
               </MenuItem>
               <MenuItem active={activeItem === 'profile'}>
                 <Icon name="user outline" />

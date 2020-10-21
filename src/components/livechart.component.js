@@ -4,7 +4,7 @@ import { Grid, Container, Icon } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
 import { Link } from "react-router-dom";
 
-// const server = 'http://192.168.0.10:5000';
+// const server = 'http://10.0.0.252:5000';
 const server = '';
 
 const SOCKETIO_ERRORS = ['reconnect_error', 'connect_error', 'connect_timeout', 'connect_failed', 'error'];
@@ -39,7 +39,7 @@ const setStateData = (labelName, label, data) => {
     });
 }
 
-class Chart extends Component {
+class LiveChart extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -85,21 +85,21 @@ class Chart extends Component {
             const time = prevState.time;
             const pointsToStore = Math.max(time.length - MAX_POINTS_TO_STORE, 0);
             let dataTime = new Date(rawData["time"]);
+
             temp.push(rawData["temp"]);
             humidity.push(rawData["humidity"]);
             time.push(dataTime.toTimeString().split(" ")[0]);
+
             const newTemp = temp.slice(pointsToStore);
             const newHumidity = humidity.slice(pointsToStore);
             const newTime = time.slice(pointsToStore);
-            console.log(newTemp);
-            console.log(newTime);
             return {
                 temp: newTemp,
                 temp_unit: temp_unit,
                 humidity: newHumidity,
-                label: newTime,
+                time: newTime,
                 connected: true,
-                tempChart: setStateData(`Temperature (°${rawData["temp_unit"]})`, newTime, newHumidity),
+                tempChart: setStateData(`Temperature (°${rawData["temp_unit"]})`, newTime, newTemp),
                 humidityChart: setStateData(`Humidity`, newTime, newHumidity)
             }
         });
@@ -156,4 +156,4 @@ class Chart extends Component {
     )
 }
 
-export default Chart;
+export default LiveChart;
